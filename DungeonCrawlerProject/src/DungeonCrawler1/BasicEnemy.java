@@ -10,6 +10,7 @@ package DungeonCrawler1;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Rectangle;
 
 public class BasicEnemy extends GameObject{
 	
@@ -23,6 +24,13 @@ public class BasicEnemy extends GameObject{
 		  super(x, y, id);
 		  speedX = 5;
 		  speedY = 5;
+	 }
+	 
+	 /**
+	  * This is the basic enemies hit box.
+	  */
+	 public Rectangle getBounds() {
+		 return new Rectangle(x,y,32,32);
 	 }
 	 
 	 /**
