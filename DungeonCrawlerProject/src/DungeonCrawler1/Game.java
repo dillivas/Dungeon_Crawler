@@ -9,17 +9,21 @@
 
 package DungeonCrawler1;
 
+import javax.imageio.ImageIO;
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.io.InputStream;
 
 public class Game extends Canvas implements Runnable{
 		
 	 private static final long serialVersionUID = 665215786302647934L;
 	 
 	 //Variable
-	 public static final int WIDTH = 640, HEIGHT = WIDTH / 12 * 9;
+	 public static final int WIDTH = 650, HEIGHT = WIDTH / 12 * 9;
 	 private Thread thread;
 	 private boolean running = false;
 	 private Handler handler;
@@ -72,8 +76,16 @@ public class Game extends Canvas implements Runnable{
 	 public void run(){
 		 	//Causes inputs to be prioritized by window
 		 	this.requestFocus();
-		 	
-		 	long lastTime = System.nanoTime();
+
+		 	BufferedImage img = null;
+
+		 	InputStream is = this.getClass().getResourceAsStream("/Images/Basic_Dungeon.JPG");
+		 try {
+			 img = ImageIO.read(is);
+		 } catch (IOException e) {
+			 e.printStackTrace();
+		 }
+		 long lastTime = System.nanoTime();
 		 	double amountOfTicks = 60.0;
 		 	double ns = 1000000000 / amountOfTicks;
 		 	double delta = 0;
@@ -89,7 +101,7 @@ public class Game extends Canvas implements Runnable{
 		         	delta--;
 		     	}
 		     	if(running)
-		     		render();
+		     		render(img);
 		         	frames++;
 		                         	
 		     	if(System.currentTimeMillis() - timer > 1000){
@@ -109,7 +121,7 @@ public class Game extends Canvas implements Runnable{
 	 /**
 	  * Controls what renders on the screen
 	  */
-	 private void render() {
+	 private void render(BufferedImage img) {
 		  BufferStrategy bs = this.getBufferStrategy();
 		  if(bs == null) {
 			   this.createBufferStrategy(3);
@@ -119,7 +131,8 @@ public class Game extends Canvas implements Runnable{
 		  Graphics g = bs.getDrawGraphics();
 		  
 		  g.setColor(Color.black);
-		  g.fillRect(0, 0, WIDTH, HEIGHT);
+		  g.drawImage(img,0,0,WIDTH,HEIGHT, this);
+		  //g.fillRect(0, 0, WIDTH, HEIGHT);
 		  
 		  handler.render(g);
 		  
