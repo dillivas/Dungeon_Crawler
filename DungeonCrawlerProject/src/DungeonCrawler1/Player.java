@@ -66,7 +66,7 @@ public class Player extends GameObject {
 			 
 			 if(tempObject.getID() == ID.BasicEnemy) {
 				 
-				 if(getBounds().intersects(tempObject.getBounds()) && (tempObject.getID() == ID.BasicEnemy)/* && (immunity == false)*/) {
+				 if(getBounds().intersects(tempObject.getBounds())/* && (immunity == false)*/) {
 					 //collision with basic enemy and knockback / immunity
 					 HUD.HEALTH -= 1;
 
@@ -74,6 +74,14 @@ public class Player extends GameObject {
 					 //immunity = true;
 					 x += 20;
 					 y += 20;
+				 }
+			 }
+			 
+			 //Check for wall
+			 if(tempObject.getID() == ID.Structer) {
+				 if(getBounds().intersects(tempObject.getBounds())) {
+					 x = Game.clampReverse(x, tempObject.getX() - 32, tempObject.getX());
+					 y = Game.clampReverse(y, tempObject.getY() - 32, tempObject.getY()); 
 				 }
 			 }
 		 }

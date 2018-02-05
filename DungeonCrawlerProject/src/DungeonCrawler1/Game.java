@@ -42,8 +42,11 @@ public class Game extends Canvas implements Runnable{
 		  hud = new HUD();
 		  
 		  handler.addObject(new Player(WIDTH/2-300,HEIGHT/2-3,ID.Player, handler));
-		  handler.addObject(new BasicEnemy(WIDTH/2-64,HEIGHT/2-64,ID.BasicEnemy));
-		  handler.addObject(new BasicEnemy(WIDTH/2,HEIGHT/2,ID.BasicEnemy));
+		  //handler.addObject(new BasicEnemy(WIDTH/2-64,HEIGHT/2-64,ID.BasicEnemy));
+		  //handler.addObject(new BasicEnemy(WIDTH/2,HEIGHT/2,ID.BasicEnemy));
+		  
+		  handler.addObject(new Wall(WIDTH/2-64,HEIGHT/2-64,ID.Structer));
+		  //handler.addObject(new Wall(WIDTH/2,HEIGHT/2,ID.Structer));
 	  
 	 }
 	 
@@ -153,6 +156,15 @@ public class Game extends Canvas implements Runnable{
 		  if(var >= max)
 			  return var = max;
 		  else if(var <= min)
+			  return var = min;
+		  else 
+			  return var;
+	 }
+	 
+	 public static int clampReverse(int var, int min, int max) {
+		  if(var <= max)
+			  return var = max;
+		  else if(var >= min)
 			  return var = min;
 		  else 
 			  return var;
