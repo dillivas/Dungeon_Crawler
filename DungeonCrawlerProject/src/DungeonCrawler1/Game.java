@@ -161,11 +161,11 @@ public class Game extends Canvas implements Runnable{
 			  return var;
 	 }
 	 
-	 public static int clampReverse(int var, int min, int max) {
-		  if(var <= max)
-			  return var = max;
-		  else if(var >= min)
-			  return var = min;
+	 public static int clampWall(int var, int min, int max) {
+		  if(var >= max)
+			  return var = max + 32;
+		  else if(var <= min)
+			  return var = min - 32;
 		  else 
 			  return var;
 	 }

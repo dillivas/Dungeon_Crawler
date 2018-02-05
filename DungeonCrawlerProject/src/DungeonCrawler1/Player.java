@@ -80,8 +80,8 @@ public class Player extends GameObject {
 			 //Check for wall
 			 if(tempObject.getID() == ID.Structer) {
 				 if(getBounds().intersects(tempObject.getBounds())) {
-					 x = Game.clampReverse(x, tempObject.getX() - 32, tempObject.getX());
-					 y = Game.clampReverse(y, tempObject.getY() - 32, tempObject.getY()); 
+					 x = Game.clampWall(x, tempObject.getX(), tempObject.getX());
+					 y = Game.clampWall(y, tempObject.getY(), tempObject.getY()); 
 				 }
 			 }
 		 }
