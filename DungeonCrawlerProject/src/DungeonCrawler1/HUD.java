@@ -11,6 +11,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 
 public class HUD {
+	GameObject gameObject;
 	 
 	 public static int HEALTH = 12;
 	 
@@ -29,4 +30,6 @@ public class HUD {
 		  g.setColor(Color.white);
 		  g.drawRect(15 , 15, 120, 32);
 	 }
+	 
+	 
 }

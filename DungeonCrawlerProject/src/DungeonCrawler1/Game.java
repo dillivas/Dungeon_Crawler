@@ -28,12 +28,17 @@ public class Game extends Canvas implements Runnable{
 	 private boolean running = false;
 	 private Handler handler;
 	 private HUD hud;
+	 private Render render;
+	 private Ghost ghost;
 	 
 	 /**
 	  * Game Constructor
 	  * IMPORTAINT: this will need to be edited so that we can add objetcs in based on map layout later
 	  */
 	 public Game() {
+		 
+		  Render.load();
+		  render = new Render();
 		  handler = new Handler();
 		  this.addKeyListener(new KeyInput(handler));
 		  
@@ -42,10 +47,10 @@ public class Game extends Canvas implements Runnable{
 		  hud = new HUD();
 		  
 		  handler.addObject(new Player(WIDTH/2-300,HEIGHT/2-3,ID.Player, handler));
-		  //handler.addObject(new BasicEnemy(WIDTH/2-64,HEIGHT/2-64,ID.BasicEnemy));
-		  //handler.addObject(new BasicEnemy(WIDTH/2,HEIGHT/2,ID.BasicEnemy));
+		  handler.addObject(new Ghost(WIDTH/2-64,HEIGHT/2-64,ID.BasicEnemy));
+		  handler.addObject(new BasicEnemy(WIDTH/2,HEIGHT/2,ID.BasicEnemy));
 		  
-		  handler.addObject(new Wall(WIDTH/2-64,HEIGHT/2-64,ID.Structer));
+		 // handler.addObject(new Wall(WIDTH/2-64,HEIGHT/2-64,ID.Structer));
 		  //handler.addObject(new Wall(WIDTH/2,HEIGHT/2,ID.Structer));
 	  
 	 }
@@ -79,16 +84,9 @@ public class Game extends Canvas implements Runnable{
 	 public void run(){
 		 	//Causes inputs to be prioritized by window
 		 	this.requestFocus();
-
-		 	BufferedImage img = null;
-
-		 	InputStream is = this.getClass().getResourceAsStream("/Images/Basic_Dungeon.JPG");
-		 try {
-			 img = ImageIO.read(is);
-		 } catch (IOException e) {
-			 e.printStackTrace();
-		 }
-		 long lastTime = System.nanoTime();
+		 	// call render class
+		 	BufferedImage img = render.loadImage("/Images/Basic_Dungeon.JPG");
+		 	long lastTime = System.nanoTime();
 		 	double amountOfTicks = 60.0;
 		 	double ns = 1000000000 / amountOfTicks;
 		 	double delta = 0;
@@ -124,7 +122,8 @@ public class Game extends Canvas implements Runnable{
 	 /**
 	  * Controls what renders on the screen
 	  */
-	 private void render(BufferedImage img) {
+	 //used to be private
+	 public void render(BufferedImage img) {
 		  BufferStrategy bs = this.getBufferStrategy();
 		  if(bs == null) {
 			   this.createBufferStrategy(3);
@@ -135,11 +134,13 @@ public class Game extends Canvas implements Runnable{
 		  
 		  g.setColor(Color.black);
 		  g.drawImage(img,0,0,WIDTH,HEIGHT, this);
-		  //g.fillRect(0, 0, WIDTH, HEIGHT);
+		 // g.fillRect(0, 0, WIDTH, HEIGHT);
 		  
 		  handler.render(g);
 		  
 		  hud.render(g);
+		  
+		  ghost.health(g);
 		  
 		  g.dispose();
 		  bs.show();
