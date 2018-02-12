@@ -38,7 +38,6 @@ public class KeyInput extends KeyAdapter{
 
 		for(int i = 0; i < handler.object.size(); i++) {
 			GameObject tempObject = handler.object.get(i);
-			System.out.println("hello");
 			if(tempObject.getID() == ID.Player) {
 				//Key events for player
 

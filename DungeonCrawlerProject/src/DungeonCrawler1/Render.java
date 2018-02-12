@@ -21,17 +21,19 @@ public class Render {
 	public static void load()
 	{
 		try {
+			System.out.println("image loaded");
 			//playerImage = ImageIO.read(Render.class.getResource("Images/KoolaidMan.JPG"));
 			playerStop = ImageIO.read(new File("src/Images/turtle.jpg"));
 			enemyImage = ImageIO.read(new File("src/Images/KoolaidMan.JPG"));
 			playerUp = ImageIO.read(new File("src/Images/capnMerica.jpg"));
 			playerDown = ImageIO.read(new File("src/Images/superman.jpg"));
 			playerLeft = ImageIO.read(new File("src/Images/wizard.jpg"));
-			playerRight = ImageIO.read(new File("src/Images/walkingMan.gif"));
+			//playerRight = ImageIO.read(new File("src/Images/walkingMan.gif"));
 			ghostImage = ImageIO.read(new File("src/Images/ghost.gif"));
 
 
 		} catch (IOException e) {
+			System.out.print("Failed to load image");
 			e.printStackTrace();
 		}
 	}

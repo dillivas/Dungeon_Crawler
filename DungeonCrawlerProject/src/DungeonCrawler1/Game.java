@@ -82,6 +82,7 @@ public class Game extends Canvas implements Runnable{
 	  * Also controls the frames.
 	  */
 	 public void run(){
+		 	//System.out.println("run() was hit");
 		 	//Causes inputs to be prioritized by window
 		 	this.requestFocus();
 		 	// call render class
@@ -94,10 +95,12 @@ public class Game extends Canvas implements Runnable{
 		 	int frames = 0;
 		 	while(running)
 		 	{
+		 		//System.out.println("run while loop hit");
 		 		long now = System.nanoTime();
 		     	delta += (now - lastTime) / ns;
 		     	lastTime = now;
 		     	while(delta >=1){
+		     		//System.out.println("tick worked");
 		     		tick();
 		         	delta--;
 		     	}
@@ -140,7 +143,7 @@ public class Game extends Canvas implements Runnable{
 		  
 		  hud.render(g);
 		  
-		  ghost.health(g);
+		  //ghost.health(g);
 		  
 		  g.dispose();
 		  bs.show();
@@ -170,7 +173,7 @@ public class Game extends Canvas implements Runnable{
 		  else 
 			  return var;
 	 }
-	 
+	
 	 
 	 /**
 	  * Main method to create new game
