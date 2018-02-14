@@ -21,6 +21,9 @@ public class Handler {
 		  for(int i = 0; i < object.size(); i++) {
 			   GameObject tempObject = object.get(i);
 			   tempObject.tick();
+			   if(tempObject.getRemove() == true) {
+				   removeObject(tempObject);
+			   }
 		  }
 	 }
 	 
@@ -50,4 +53,5 @@ public class Handler {
 	 public void removeObject(GameObject object) {
 		 this.object.remove(object);
 	 }
+
 }

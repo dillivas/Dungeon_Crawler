@@ -14,11 +14,14 @@ import java.awt.Rectangle;
 public abstract class GameObject {
 	 
 	 //Object x and y coordinates
-	 protected int x, y;
+	protected int x;
+	protected int y;
 	 //Object ID
 	 protected ID id;
 	 //Objects speed / direction
 	 protected int speedX, speedY;
+	 //Object Remove
+	 protected boolean remove = false;
 	 
 	 /**
 	  * GameObject constructor
@@ -116,4 +119,13 @@ public abstract class GameObject {
 	 public int getSpeedY() {
 		 return speedY;
 	 }
+	 
+	 public boolean getRemove() {
+		 return remove;
+	 }
+	 
+	 public void setRemove(boolean remove) {
+		 this.remove  = remove;
+	 }
 }
+

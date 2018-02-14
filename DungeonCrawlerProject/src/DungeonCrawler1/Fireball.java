@@ -13,28 +13,40 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
-public class Wall extends GameObject {
+public class Fireball extends GameObject {
 	
-	 public Wall(int x, int y, ID id) {
+	 public Fireball(int x, int y, ID id) {
 		 super(x, y, id);
-		 speedX = 0;
-		 speedY = 0;
+		 if(KeyInput.leftAim == true)
+			 speedX = -3;
+		 else if(KeyInput.rightAim == true)
+			 speedX = 3;
+		 else if(KeyInput.upAim == true)
+			 speedY = -3;
+		 else if(KeyInput.downAim == true)
+			 speedY = 3;
 	 }
-	 
 	 public Rectangle getBounds() {
-		 return new Rectangle(x,y,32,32);
+		 return new Rectangle(x,y,16,16);
 	 }
 	 
 	 public void tick() {
-		 x += speedX;
-		 y += speedY;
+			x += speedX;
+			y += speedY;
+
+			x = Game.clamp(x, 0, Game.WIDTH);
+			y = Game.clamp(y, 0, Game.HEIGHT);
+			
+			if((x == 0) || (x == Game.WIDTH) || (y == 0) || (y == Game.HEIGHT)){
+				this.remove = true;
+			}
 	 }
 	 
 	 public void render(Graphics g) {
 		 
 		 //Graphics2D g2d = (Graphics2D)g;
 		 
-		  g.setColor(Color.white);
-		  g.fillRect(x, y, 32, 32);
+		  g.setColor(Color.orange);
+		  g.fillRect(x, y, 16, 16);
 	 }
 }

@@ -11,6 +11,7 @@ package DungeonCrawler1;
 public enum ID {
 	 Player(),
 	 Structer(),
-	 BasicEnemy();
+	 BasicEnemy(),
+	 Attack();
 }
 

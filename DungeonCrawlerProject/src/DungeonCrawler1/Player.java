@@ -21,6 +21,7 @@ import javax.imageio.ImageIO;
 public class Player extends GameObject {
 	private Game game;
 	Handler handler;
+	
 	//Object immunity handler
 	/* boolean immunity;
 	 int immunityTime;*/
@@ -37,7 +38,7 @@ public class Player extends GameObject {
 		/*immunity = false;
 		 immunityTime = 0;*/
 	}
-
+	
 	/**
 	 * This is the Players hit box.
 	 */
@@ -56,7 +57,7 @@ public class Player extends GameObject {
 		y = Game.clamp(y, 0, Game.HEIGHT - 60); 
 		collision();
 	}
-
+	
 	/**
 	 * This method handles the collisions between game objects
 	 */
@@ -72,13 +73,24 @@ public class Player extends GameObject {
 			if(tempObject.getID() == ID.BasicEnemy) {
 
 				if(getBounds().intersects(tempObject.getBounds()) && (tempObject.getID() == ID.BasicEnemy)/* && (immunity == false)*/) {
-					//collision with basic enemy and knockback / immunity
+					//collision with basic enemy and knockback / direction of knockback
 					HUD.HEALTH -= 1;
-
-					//immunityTime = 3000;
-					//immunity = true;
-					x += 20;
-					y += 20;
+				
+					if(KeyInput.up == true) {
+						x-=40;
+					}
+					else if(KeyInput.down == true) {
+						x+=40;
+					}
+					else if(KeyInput.right == true) {
+						y+=40;
+					}
+					else if(KeyInput.left == true) {
+						y-=40;
+					}
+					else {
+						x+=40;
+					}
 				}
 			}
 		}
@@ -105,54 +117,5 @@ public class Player extends GameObject {
 			g.drawImage(Render.playerRight,x,y,32,32, null);
 		}	  
 	}
-
-
-
-	/*public boolean getImmunity() {
-=======
-					 //immunityTime = 3000;
-					 //immunity = true;
-					 x += 20;
-					 y += 20;
-				 }
-			 }
-			 
-			 //Check for wall
-			 if(tempObject.getID() == ID.Structer) {
-				 if(getBounds().intersects(tempObject.getBounds())) {
-					 x = Game.clampWall(x, tempObject.getX(), tempObject.getX());
-					 y = Game.clampWall(y, tempObject.getY(), tempObject.getY()); 
-				 }
-			 }
-		 }
-	 }
-	 
-	 /**
-	  * Player Graphic
-	  * @param g is player graphic
-	  */
-/*	 public void render(Graphics g) {
-		 
-		 //Graphics2D g2d = (Graphics2D)g;
-		 
-		  g.setColor(Color.green);
-		  g.fillRect(x, y, 32, 32);
-	 }
-	 
-	 /*public boolean getImmunity() {
->>>>>>> branch 'master' of https://github.com/Mckeevew/Dungeon_Crawler.git
-		 return immunity;
-	 }
-	 public int getImmunityTime() {
-		 return immunityTime;
-	 }
-
-	 public void setImmunity(boolean immunity) {
-		 this.immunity = immunity;
-	 }
-
-	 public void setImmunityTime(int immunityTime) {
-		 this.immunityTime = immunityTime;
-	 }*/
 }
 

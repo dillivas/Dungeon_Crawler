@@ -20,12 +20,16 @@ public class KeyInput extends KeyAdapter{
 	public static boolean right = false;
 	public static boolean stop = true;
 
+	public static boolean upAim = true;
+	public static boolean downAim = false;
+	public static boolean leftAim = false;
+	public static boolean rightAim = false;
+
 
 	public KeyInput(Handler handler) {
 		this.handler = handler;
 	}
-
-
+	
 	/**
 	 * Make action happen based of character movement
 	 * @param e is a KeyEvent
@@ -39,8 +43,7 @@ public class KeyInput extends KeyAdapter{
 		for(int i = 0; i < handler.object.size(); i++) {
 			GameObject tempObject = handler.object.get(i);
 			if(tempObject.getID() == ID.Player) {
-				//Key events for player
-
+				//Get movement direction////////////////////////////////////////////////////////
 				if(key == KeyEvent.VK_W) {
 					tempObject.setSpeedY(-5);
 					up = true;
@@ -48,6 +51,7 @@ public class KeyInput extends KeyAdapter{
 					left = false; 
 					right = false; 
 					stop = false;
+
 				}
 				if(key == KeyEvent.VK_S) {
 					tempObject.setSpeedY(5);
@@ -72,6 +76,36 @@ public class KeyInput extends KeyAdapter{
 					left = true; 
 					right = false; 
 					stop = false;
+				}
+				//Get aim direction////////////////////////////////////////////////////////////////
+				if(key == KeyEvent.VK_UP) {
+
+					upAim = true;
+					downAim = false;
+					leftAim = false; 
+					rightAim = false; 
+
+				}
+				if(key == KeyEvent.VK_DOWN) {
+					upAim = false;
+					downAim = true;
+					leftAim = false; 
+					rightAim = false; 
+				}
+				if(key == KeyEvent.VK_RIGHT) {
+					upAim = false;
+					downAim = false;
+					leftAim = false; 
+					rightAim = true; 
+				}
+				if(key == KeyEvent.VK_LEFT) {
+					upAim = false;
+					downAim = false;
+					leftAim = true; 
+					rightAim = false; 
+				}
+				if(key == KeyEvent.VK_SPACE) {
+					handler.addObject(new Fireball(tempObject.getX(),tempObject.getY(),ID.Attack));
 				}
 			}
 		}
