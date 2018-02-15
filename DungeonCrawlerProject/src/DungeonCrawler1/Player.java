@@ -21,6 +21,8 @@ import javax.imageio.ImageIO;
 public class Player extends GameObject {
 	private Game game;
 	Handler handler;
+	public char lastKey = 'd';
+	public int pressLength = 4;
 	
 	//Object immunity handler
 	/* boolean immunity;
@@ -101,20 +103,64 @@ public class Player extends GameObject {
 	 * @param g is player graphic
 	 */
 	public void render(Graphics g) {
-		if(KeyInput.stop == true) {
-			g.drawImage(Render.playerStop,x,y,32,32, null);
+		
+		
+		if(KeyInput.stop == true && lastKey=='w') {
+			g.drawImage(Render.playerUpStanding,x,y,32,50, null);
 		}
+		if(KeyInput.stop == true && lastKey=='s') {
+			g.drawImage(Render.playerDownStanding,x,y,32,50, null);
+		}
+		if(KeyInput.stop == true && lastKey=='a') {
+			g.drawImage(Render.playerLeftStanding,x,y,32,50, null);
+		}
+		if(KeyInput.stop == true && lastKey=='d') {
+			g.drawImage(Render.playerRightStanding,x,y,32,50, null);
+		}
+		
+		
 		if(KeyInput.up == true) {
-			g.drawImage(Render.playerUp,x,y,32,32, null);
+			lastKey='w';
+			pressLength++;
+			if(pressLength%2==0) {
+				g.drawImage(Render.playerForwardWalk1,x,y,32,50, null);
+			}
+			else {
+				g.drawImage(Render.playerForwardWalk2,x,y,32,50, null);
+			}
+				
 		}
 		if(KeyInput.down == true) {
-			g.drawImage(Render.playerDown,x,y,32,32, null);
+			lastKey='s';
+			pressLength++;
+			if(pressLength%2==0) {
+				g.drawImage(Render.playerDownWalk1,x,y,32,50, null);
+			}
+			else {
+				g.drawImage(Render.playerDownWalk2,x,y,32,50, null);
+			}
 		}
+		
 		if(KeyInput.left == true) {
-			g.drawImage(Render.playerLeft,x,y,32,32, null);
+			lastKey='a';
+			pressLength++;
+			if(pressLength%2==0) {
+				g.drawImage(Render.playerLeftWalk1,x,y,32,50, null);
+			}
+			else {
+				g.drawImage(Render.playerLeftWalk2,x,y,32,50, null);
+			}
 		}
+		
 		if(KeyInput.right == true) {
-			g.drawImage(Render.playerRight,x,y,32,32, null);
+			lastKey='d';
+			pressLength++;
+			if(pressLength%2==0) {
+				g.drawImage(Render.playerRightWalk1,x,y,32,50, null);
+			}
+			else {
+				g.drawImage(Render.playerRightWalk2,x,y,32,50, null);
+			}
 		}	  
 	}
 }

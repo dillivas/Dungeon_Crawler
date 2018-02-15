@@ -13,6 +13,7 @@ import java.awt.event.KeyEvent;
 
 public class KeyInput extends KeyAdapter{
 
+	
 	private Handler handler;
 	public static boolean up = false;
 	public static boolean down = false;

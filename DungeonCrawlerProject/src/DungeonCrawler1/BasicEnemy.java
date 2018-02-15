@@ -30,7 +30,7 @@ public class BasicEnemy extends GameObject{
 	 * This is the basic enemies hit box.
 	 */
 	public Rectangle getBounds() {
-		return new Rectangle(x,y,32,32);
+		return new Rectangle(x,y,100,100);
 	}
 
 	/**
@@ -48,7 +48,7 @@ public class BasicEnemy extends GameObject{
 	 * Controls BasicEnemy rendering
 	 */
 	public void render(Graphics g) {
-		g.drawImage(Render.enemyImage,x,y,32,32, null);
+		g.drawImage(Render.enemyImage,x,y,100,100, null);
 		//g.fillRect(x, y, 32, 32);
 	}
 }

@@ -46,7 +46,9 @@ public class Fireball extends GameObject {
 		 
 		 //Graphics2D g2d = (Graphics2D)g;
 		 
-		  g.setColor(Color.orange);
-		  g.fillRect(x, y, 16, 16);
+		 g.drawImage(Render.fireball,x,y,16,16, null);
+		 
+/*		  g.setColor(Color.orange);
+		  g.fillRect(x, y, 16, 16);*/
 	 }
 }
