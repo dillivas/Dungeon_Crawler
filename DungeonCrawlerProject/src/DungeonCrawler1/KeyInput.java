@@ -20,11 +20,16 @@ public class KeyInput extends KeyAdapter{
 	public static boolean left = false;
 	public static boolean right = false;
 	public static boolean stop = true;
+	public static boolean pause = false;
+	public static boolean dead = false;
+
 
 	public static boolean upAim = true;
 	public static boolean downAim = false;
 	public static boolean leftAim = false;
 	public static boolean rightAim = false;
+	public int count = 0;
+
 
 
 	public KeyInput(Handler handler) {
@@ -45,6 +50,15 @@ public class KeyInput extends KeyAdapter{
 			GameObject tempObject = handler.object.get(i);
 			if(tempObject.getID() == ID.Player) {
 				//Get movement direction////////////////////////////////////////////////////////
+				if(key == KeyEvent.VK_Q) {
+					count++;
+					if (count % 2 ==0){
+						pause = false;
+					}
+					else {
+						pause = true;
+					}
+				}
 				if(key == KeyEvent.VK_W) {
 					tempObject.setSpeedY(-5);
 					up = true;
@@ -132,6 +146,7 @@ public class KeyInput extends KeyAdapter{
 				left = false; 
 				right = false; 
 				stop = true;
+				dead = true;
 
 				if(key == KeyEvent.VK_W) tempObject.setSpeedY(0);
 				if(key == KeyEvent.VK_S) tempObject.setSpeedY(0);

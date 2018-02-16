@@ -122,7 +122,7 @@ public class Player extends GameObject {
 		if(KeyInput.up == true) {
 			lastKey='w';
 			pressLength++;
-			if(pressLength%2==0) {
+			if(pressLength%8==0) {
 				g.drawImage(Render.playerForwardWalk1,x,y,32,50, null);
 			}
 			else {
@@ -133,7 +133,7 @@ public class Player extends GameObject {
 		if(KeyInput.down == true) {
 			lastKey='s';
 			pressLength++;
-			if(pressLength%2==0) {
+			if(pressLength%8==0) {
 				g.drawImage(Render.playerDownWalk1,x,y,32,50, null);
 			}
 			else {
@@ -144,7 +144,7 @@ public class Player extends GameObject {
 		if(KeyInput.left == true) {
 			lastKey='a';
 			pressLength++;
-			if(pressLength%2==0) {
+			if(pressLength%8==0) {
 				g.drawImage(Render.playerLeftWalk1,x,y,32,50, null);
 			}
 			else {
@@ -155,7 +155,7 @@ public class Player extends GameObject {
 		if(KeyInput.right == true) {
 			lastKey='d';
 			pressLength++;
-			if(pressLength%2==0) {
+			if(pressLength%8==0) {
 				g.drawImage(Render.playerRightWalk1,x,y,32,50, null);
 			}
 			else {
