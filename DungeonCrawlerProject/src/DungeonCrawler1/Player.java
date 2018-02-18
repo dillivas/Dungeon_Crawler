@@ -54,6 +54,18 @@ public class Player extends GameObject {
 	public void tick() {
 		x += speedX;
 		y += speedY;
+		
+		if(handler.getUp()) speedY = -3;
+		else if(!handler.getDown()) speedY = 0;
+		
+		if(handler.getDown()) speedY = 3;
+		else if(!handler.getUp()) speedY = 0;
+		
+		if(handler.getRight()) speedX = 3;
+		else if(!handler.getLeft()) speedX = 0;
+		
+		if(handler.getLeft()) speedX = -3;
+		else if(!handler.getRight()) speedX = 0;
 
 		x = Game.clamp(x, 0, Game.WIDTH - 37);
 		y = Game.clamp(y, 0, Game.HEIGHT - 60); 
@@ -78,16 +90,16 @@ public class Player extends GameObject {
 					//collision with basic enemy and knockback / direction of knockback
 					HUD.HEALTH -= 1;
 				
-					if(KeyInput.up == true) {
+					if(handler.getUp() == true) {
 						x-=40;
 					}
-					else if(KeyInput.down == true) {
+					else if(handler.getDown() == true) {
 						x+=40;
 					}
-					else if(KeyInput.right == true) {
+					else if(handler.getRight() == true) {
 						y+=40;
 					}
-					else if(KeyInput.left == true) {
+					else if(handler.getLeft() == true) {
 						y-=40;
 					}
 					else {
@@ -105,21 +117,21 @@ public class Player extends GameObject {
 	public void render(Graphics g) {
 		
 		
-		if(KeyInput.stop == true && lastKey=='w') {
+		if(handler.getStop() == true && lastKey=='w') {
 			g.drawImage(Render.playerUpStanding,x,y,32,50, null);
 		}
-		if(KeyInput.stop == true && lastKey=='s') {
+		if(handler.getStop() == true && lastKey=='s') {
 			g.drawImage(Render.playerDownStanding,x,y,32,50, null);
 		}
-		if(KeyInput.stop == true && lastKey=='a') {
+		if(handler.getStop() && lastKey=='a') {
 			g.drawImage(Render.playerLeftStanding,x,y,32,50, null);
 		}
-		if(KeyInput.stop == true && lastKey=='d') {
+		if(handler.getStop() && lastKey=='d') {
 			g.drawImage(Render.playerRightStanding,x,y,32,50, null);
 		}
 		
 		
-		if(KeyInput.up == true) {
+		if(handler.getUp() == true) {
 			lastKey='w';
 			pressLength++;
 			if(pressLength%2==0) {
@@ -130,7 +142,7 @@ public class Player extends GameObject {
 			}
 				
 		}
-		if(KeyInput.down == true) {
+		if(handler.getDown() == true) {
 			lastKey='s';
 			pressLength++;
 			if(pressLength%2==0) {
@@ -141,7 +153,7 @@ public class Player extends GameObject {
 			}
 		}
 		
-		if(KeyInput.left == true) {
+		if(handler.getLeft() == true) {
 			lastKey='a';
 			pressLength++;
 			if(pressLength%2==0) {
@@ -152,7 +164,7 @@ public class Player extends GameObject {
 			}
 		}
 		
-		if(KeyInput.right == true) {
+		if(handler.getRight() == true) {
 			lastKey='d';
 			pressLength++;
 			if(pressLength%2==0) {

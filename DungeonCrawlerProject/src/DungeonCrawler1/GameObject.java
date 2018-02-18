@@ -36,7 +36,15 @@ public abstract class GameObject {
 		  this.id = id;
 	 }
 	 
-	 public abstract void tick();
+	 public GameObject(int x, int y, int speedX, int speedY, ID id) {
+		 this.x = x;
+		  this.y = y;
+		  this.speedX = speedX;
+		  this.speedY = speedY;
+		  this.id = id;
+	}
+
+	public abstract void tick();
 	 public abstract void render(Graphics g);
 	 public abstract Rectangle getBounds();
 	 

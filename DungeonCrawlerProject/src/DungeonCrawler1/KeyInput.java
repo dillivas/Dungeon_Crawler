@@ -15,17 +15,10 @@ public class KeyInput extends KeyAdapter{
 
 	
 	private Handler handler;
-	public static boolean up = false;
-	public static boolean down = false;
-	public static boolean left = false;
-	public static boolean right = false;
-	public static boolean stop = true;
-
-	public static boolean upAim = true;
-	public static boolean downAim = false;
-	public static boolean leftAim = false;
-	public static boolean rightAim = false;
-
+	
+	public int count = 0;
+	
+	public static boolean dead = false;
 
 	public KeyInput(Handler handler) {
 		this.handler = handler;
@@ -44,70 +37,51 @@ public class KeyInput extends KeyAdapter{
 		for(int i = 0; i < handler.object.size(); i++) {
 			GameObject tempObject = handler.object.get(i);
 			if(tempObject.getID() == ID.Player) {
-				//Get movement direction////////////////////////////////////////////////////////
+				
+				if(key == KeyEvent.VK_Q) {
+					count++;
+					if (count % 2 ==0){
+						handler.setPause(false);
+					}
+					else {
+						handler.setPause(true);
+					}
+				}
+				
 				if(key == KeyEvent.VK_W) {
-					tempObject.setSpeedY(-5);
-					up = true;
-					down = false;
-					left = false; 
-					right = false; 
-					stop = false;
-
+					handler.setUp(true);
+					handler.setStop(false);
 				}
 				if(key == KeyEvent.VK_S) {
-					tempObject.setSpeedY(5);
-					up = false;
-					down = true;
-					left = false; 
-					right = false; 
-					stop = false;
-				}
-				if(key == KeyEvent.VK_D) {
-					tempObject.setSpeedX(5);
-					up = false;
-					down = false;
-					left = false; 
-					right = true; 
-					stop = false;
+					handler.setDown(true);
+					handler.setStop(false);
 				}
 				if(key == KeyEvent.VK_A) {
-					tempObject.setSpeedX(-5);
-					up = false;
-					down = false;
-					left = true; 
-					right = false; 
-					stop = false;
+					handler.setLeft(true);
+					handler.setStop(false);
 				}
-				//Get aim direction////////////////////////////////////////////////////////////////
+				if(key == KeyEvent.VK_D) {
+					handler.setRight(true);
+					handler.setStop(false);
+				}
 				if(key == KeyEvent.VK_UP) {
-
-					upAim = true;
-					downAim = false;
-					leftAim = false; 
-					rightAim = false; 
-
+					handler.setUpAim(true);
+					//Set Attack Direction
+					handler.addObject(new Fireball(tempObject.getX(),tempObject.getY(),0,-5,ID.Attack));
 				}
 				if(key == KeyEvent.VK_DOWN) {
-					upAim = false;
-					downAim = true;
-					leftAim = false; 
-					rightAim = false; 
-				}
-				if(key == KeyEvent.VK_RIGHT) {
-					upAim = false;
-					downAim = false;
-					leftAim = false; 
-					rightAim = true; 
+					handler.setDownAim(true);
+					handler.addObject(new Fireball(tempObject.getX(),tempObject.getY(),0,5,ID.Attack));
 				}
 				if(key == KeyEvent.VK_LEFT) {
-					upAim = false;
-					downAim = false;
-					leftAim = true; 
-					rightAim = false; 
+					handler.setLeftAim(true);
+					handler.addObject(new Fireball(tempObject.getX(),tempObject.getY(),-5,0,ID.Attack));
 				}
-				if(key == KeyEvent.VK_SPACE) {
-					handler.addObject(new Fireball(tempObject.getX(),tempObject.getY(),ID.Attack));
+				if(key == KeyEvent.VK_RIGHT) {
+					handler.setRightAim(true);
+					handler.addObject(new Fireball(tempObject.getX(),tempObject.getY(),5,0,ID.Attack));
 				}
+				if(key == KeyEvent.VK_SPACE) handler.setSpace(true);
 			}
 		}
 
@@ -126,17 +100,20 @@ public class KeyInput extends KeyAdapter{
 			GameObject tempObject = handler.object.get(i);
 
 			if(tempObject.getID() == ID.Player) {
-				//Key events for player
-				up = false;
-				down = false;
-				left = false; 
-				right = false; 
-				stop = true;
+				
+				if(key == KeyEvent.VK_W) handler.setUp(false);
+				if(key == KeyEvent.VK_S) handler.setDown(false);
+				if(key == KeyEvent.VK_A) handler.setLeft(false);
+				if(key == KeyEvent.VK_D) handler.setRight(false);
+				if(key == KeyEvent.VK_UP) handler.setUpAim(false);
+				if(key == KeyEvent.VK_DOWN) handler.setDownAim(false);
+				if(key == KeyEvent.VK_LEFT) handler.setLeftAim(false);
+				if(key == KeyEvent.VK_RIGHT) handler.setRightAim(false);
+				if(key == KeyEvent.VK_SPACE) handler.setSpace(false);
+				handler.setStop(true);
+				
+				dead = true;
 
-				if(key == KeyEvent.VK_W) tempObject.setSpeedY(0);
-				if(key == KeyEvent.VK_S) tempObject.setSpeedY(0);
-				if(key == KeyEvent.VK_D) tempObject.setSpeedX(0);
-				if(key == KeyEvent.VK_A) tempObject.setSpeedX(0);
 			}
 		}
 	}

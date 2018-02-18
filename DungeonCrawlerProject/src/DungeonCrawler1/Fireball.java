@@ -15,16 +15,10 @@ import java.awt.Rectangle;
 
 public class Fireball extends GameObject {
 	
-	 public Fireball(int x, int y, ID id) {
-		 super(x, y, id);
-		 if(KeyInput.leftAim == true)
-			 speedX = -3;
-		 else if(KeyInput.rightAim == true)
-			 speedX = 3;
-		 else if(KeyInput.upAim == true)
-			 speedY = -3;
-		 else if(KeyInput.downAim == true)
-			 speedY = 3;
+	 //Handler handler;
+	
+	 public Fireball(int x, int y, int speedX,  int speedY, ID id) {
+		super(x,y,speedX,speedY,id);
 	 }
 	 public Rectangle getBounds() {
 		 return new Rectangle(x,y,16,16);
