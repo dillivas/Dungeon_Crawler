@@ -19,7 +19,6 @@ import java.io.InputStream;
 import javax.imageio.ImageIO;
 
 public class Player extends GameObject {
-	private Game game;
 	Handler handler;
 	public char lastKey = 'd';
 	public int pressLength = 4;
@@ -45,7 +44,9 @@ public class Player extends GameObject {
 	 * This is the Players hit box.
 	 */
 	public Rectangle getBounds() {
+		System.out.println(x);
 		return new Rectangle(x,y,32,32);
+		
 	}
 
 	/**
@@ -78,7 +79,7 @@ public class Player extends GameObject {
 					//collision with basic enemy and knockback / direction of knockback
 					HUD.HEALTH -= 1;
 				
-					if(KeyInput.up == true) {
+					/*if(KeyInput.up == true) {
 						x-=40;
 					}
 					else if(KeyInput.down == true) {
@@ -92,7 +93,7 @@ public class Player extends GameObject {
 					}
 					else {
 						x+=40;
-					}
+					}*/
 				}
 			}
 		}

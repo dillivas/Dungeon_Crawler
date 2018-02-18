@@ -39,10 +39,8 @@ public class Render {
 	public static BufferedImage pauseScreen;
 	public static BufferedImage gameQuit;
 	public static BufferedImage gameRestart;
-
-
-
-
+	public static BufferedImage pauseQuit;
+	public static BufferedImage pauseRestart;
 	
 	public static void load()
 	{
@@ -72,9 +70,11 @@ public class Render {
 			playerDownStanding = ImageIO.read(new File("src/player_images/down_stand.gif"));
 			playerUpStanding = ImageIO.read(new File("src/player_images/forward_stand.gif"));
 			
-			pauseScreen = ImageIO.read(new File("src/Images/pause_screen.PNG"));
-			gameRestart = ImageIO.read(new File("src/Images/gameQuit.PNG"));
-			gameQuit = ImageIO.read(new File("src/Images/gameRestart.PNG"));
+			//pauseScreen = ImageIO.read(new File("src/Images/pause_screen.PNG"));
+			pauseQuit = ImageIO.read(new File("src/Images/QuitPause.PNG"));
+			pauseRestart = ImageIO.read(new File("src/Images/RestartPause.PNG"));
+			gameRestart = ImageIO.read(new File("src/Images/RestartGame.PNG"));
+			gameQuit = ImageIO.read(new File("src/Images/QuitGame.PNG"));
 
 
 			enemyImage = ImageIO.read(new File("src/Images/blob.gif"));

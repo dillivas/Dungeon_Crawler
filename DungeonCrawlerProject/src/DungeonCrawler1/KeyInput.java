@@ -29,6 +29,7 @@ public class KeyInput extends KeyAdapter{
 	public static boolean leftAim = false;
 	public static boolean rightAim = false;
 	public int count = 0;
+	public static boolean space = false;
 
 
 
@@ -66,6 +67,7 @@ public class KeyInput extends KeyAdapter{
 					left = false; 
 					right = false; 
 					stop = false;
+					space = false;
 
 				}
 				if(key == KeyEvent.VK_S) {
@@ -75,6 +77,7 @@ public class KeyInput extends KeyAdapter{
 					left = false; 
 					right = false; 
 					stop = false;
+					space = false;
 				}
 				if(key == KeyEvent.VK_D) {
 					tempObject.setSpeedX(5);
@@ -83,6 +86,7 @@ public class KeyInput extends KeyAdapter{
 					left = false; 
 					right = true; 
 					stop = false;
+					space = false;
 				}
 				if(key == KeyEvent.VK_A) {
 					tempObject.setSpeedX(-5);
@@ -91,6 +95,7 @@ public class KeyInput extends KeyAdapter{
 					left = true; 
 					right = false; 
 					stop = false;
+					space = false;
 				}
 				//Get aim direction////////////////////////////////////////////////////////////////
 				if(key == KeyEvent.VK_UP) {
@@ -120,6 +125,7 @@ public class KeyInput extends KeyAdapter{
 					rightAim = false; 
 				}
 				if(key == KeyEvent.VK_SPACE) {
+					space = true;
 					handler.addObject(new Fireball(tempObject.getX(),tempObject.getY(),ID.Attack));
 				}
 			}

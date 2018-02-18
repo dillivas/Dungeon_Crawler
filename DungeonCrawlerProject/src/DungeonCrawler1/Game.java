@@ -77,6 +77,10 @@ public class Game extends Canvas implements Runnable{
 			e.printStackTrace();
 		}
 	}
+	public void gameRestart() {
+		PauseScreen.newGame = false;
+		//new Game();
+	}
 
 	/**
 	 * Game Loop.
@@ -105,6 +109,9 @@ public class Game extends Canvas implements Runnable{
 				if (HUD.HEALTH != 0 && KeyInput.pause == false) {
 					tick();
 				}
+				if (PauseScreen.newGame == true) {
+					gameRestart();
+				}
 				delta--;
 			}
 			if(running) {
@@ -116,6 +123,7 @@ public class Game extends Canvas implements Runnable{
 				timer += 1000;
 				System.out.println("FPS: "+ frames);
 				frames = 0;
+			
 			}
 		}
 		stop();

@@ -5,6 +5,7 @@ import java.awt.Rectangle;
 
 public class PauseScreen extends GameObject {
 	public char lastKey = 'd';
+	public static boolean newGame = false;
 	/**
 	 * BasicEnemy constructor
 	 * @param x coordinates
@@ -21,7 +22,8 @@ public class PauseScreen extends GameObject {
 	 * This is the basic enemies hit box.
 	 */
 	public Rectangle getBounds() {
-		return new Rectangle(x,y,100,100);
+		//System.out.println(x);
+		return new Rectangle(0,0,0,0);
 	}
 
 	/**
@@ -40,25 +42,58 @@ public class PauseScreen extends GameObject {
 	 */
 	public void render(Graphics g) {
 		if (KeyInput.pause == true) {
-			g.drawImage(Render.pauseScreen,145,70,350,350, null);
-			//g.fillRect(x, y, 32, 32);
-		}
-		if(HUD.HEALTH == 0) {
+			g.drawImage(Render.pauseQuit,0,0,650,458, null);
 			if(KeyInput.stop == true && lastKey=='w') {
-				g.drawImage(Render.gameRestart,145,70,350,350, null);
+				g.drawImage(Render.pauseQuit,0,0,650,458, null);
+					if(KeyInput.space == true) {
+						System.exit(1);
+					}
 			}
 			if(KeyInput.stop == true && lastKey=='s') {
-				g.drawImage(Render.gameQuit,145,70,350,350, null);
+				g.drawImage(Render.pauseRestart,0,0,650,458, null);
+				if(KeyInput.space == true) {
+					new Game();
+				}
 			}
 			
 			if(KeyInput.up == true) {
-				g.drawImage(Render.gameRestart,145,70,350,350, null);
+				g.drawImage(Render.pauseQuit,0,0,650,458, null);
 				lastKey = 'w'; 
 				//g.fillRect(x, y, 32, 32);
 			}
 
 			if (KeyInput.down == true){
-				g.drawImage(Render.gameQuit,145,70,350,350, null);
+				g.drawImage(Render.pauseRestart,0,0,650,458, null);
+				lastKey = 's';
+				//g.fillRect(x, y, 32, 32);
+			}
+			//g.fillRect(x, y, 32, 32);
+		}
+		
+		if(HUD.HEALTH == 0) {
+			g.drawImage(Render.gameRestart,0,0,650,458, null);
+
+			if(KeyInput.stop == true && lastKey=='w') {
+				g.drawImage(Render.gameQuit,0,0,650,458, null);
+					if(KeyInput.space == true) {
+						System.exit(1);
+					}
+			}
+			if(KeyInput.stop == true && lastKey=='s') {
+				g.drawImage(Render.gameRestart,0,0,650,458, null);
+				if(KeyInput.space == true) {
+					newGame = true;
+				}
+			}
+			
+			if(KeyInput.up == true) {
+				g.drawImage(Render.gameQuit,0,0,650,458, null);
+				lastKey = 'w'; 
+				//g.fillRect(x, y, 32, 32);
+			}
+
+			if (KeyInput.down == true){
+				g.drawImage(Render.gameRestart,0,0,650,458, null);
 				lastKey = 's';
 				//g.fillRect(x, y, 32, 32);
 			}
