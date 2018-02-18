@@ -121,6 +121,10 @@ public class Handler {
 				   removeObject(tempObject);
 			   }
 		  }
+		//  if (HUD.HEALTH == 0) {
+			 // Game.stop();
+			//	System.out.print("hello");
+		//	}
 	 }
 	 
 	 /**

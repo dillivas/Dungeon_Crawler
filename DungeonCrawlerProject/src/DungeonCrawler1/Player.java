@@ -19,7 +19,6 @@ import java.io.InputStream;
 import javax.imageio.ImageIO;
 
 public class Player extends GameObject {
-	private Game game;
 	Handler handler;
 	public char lastKey = 'd';
 	public int pressLength = 4;
@@ -45,7 +44,9 @@ public class Player extends GameObject {
 	 * This is the Players hit box.
 	 */
 	public Rectangle getBounds() {
+		System.out.println(x);
 		return new Rectangle(x,y,32,32);
+		
 	}
 
 	/**
@@ -90,7 +91,11 @@ public class Player extends GameObject {
 					//collision with basic enemy and knockback / direction of knockback
 					HUD.HEALTH -= 1;
 				
+<<<<<<< HEAD
 					if(handler.getUp() == true) {
+=======
+					/*if(KeyInput.up == true) {
+>>>>>>> refs/remotes/origin/master
 						x-=40;
 					}
 					else if(handler.getDown() == true) {
@@ -104,7 +109,7 @@ public class Player extends GameObject {
 					}
 					else {
 						x+=40;
-					}
+					}*/
 				}
 			}
 		}
@@ -134,7 +139,7 @@ public class Player extends GameObject {
 		if(handler.getUp() == true) {
 			lastKey='w';
 			pressLength++;
-			if(pressLength%2==0) {
+			if(pressLength%8==0) {
 				g.drawImage(Render.playerForwardWalk1,x,y,32,50, null);
 			}
 			else {
@@ -145,7 +150,7 @@ public class Player extends GameObject {
 		if(handler.getDown() == true) {
 			lastKey='s';
 			pressLength++;
-			if(pressLength%2==0) {
+			if(pressLength%8==0) {
 				g.drawImage(Render.playerDownWalk1,x,y,32,50, null);
 			}
 			else {
@@ -156,7 +161,7 @@ public class Player extends GameObject {
 		if(handler.getLeft() == true) {
 			lastKey='a';
 			pressLength++;
-			if(pressLength%2==0) {
+			if(pressLength%8==0) {
 				g.drawImage(Render.playerLeftWalk1,x,y,32,50, null);
 			}
 			else {
@@ -167,7 +172,7 @@ public class Player extends GameObject {
 		if(handler.getRight() == true) {
 			lastKey='d';
 			pressLength++;
-			if(pressLength%2==0) {
+			if(pressLength%8==0) {
 				g.drawImage(Render.playerRightWalk1,x,y,32,50, null);
 			}
 			else {
